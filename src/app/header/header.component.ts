@@ -2,6 +2,7 @@ import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {PokemonService} from '../shared/pokemon.service';
 import {Meta} from '@angular/platform-browser';
 import {PwaService} from '../shared/pwa.service';
+import { version } from '../../../package.json';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   _timeout: any = null;
   megaSwitch;
   versionSwitch;
+  appVersion: string = version;
   @ViewChild('menu') menu: ElementRef;
 
   ngOnInit(): void {
