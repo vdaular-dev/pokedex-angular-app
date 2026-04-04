@@ -166,7 +166,8 @@ export class PokemonService {
       (response) => {
         this.getMoveDetailsFromCSV();
         this.pokemonJSON = response['pokemon'];
-        for (let i = 0; i < 905; i++) {
+        let nationalDexMax = 1025;
+        for (let i = 0; i < nationalDexMax; i++) {
           const pokemonData = this.pokemonJSON[(i + 1).toString()];
           const pokemonSpeciesData = this.pokemonSpeciesJSON[i];
           let name = pokemonData['N'];
@@ -200,7 +201,7 @@ export class PokemonService {
             pokemonSpeciesData['EvC']
           ));
         }
-        this.newPokemonsLoaded.next(905);
+        this.newPokemonsLoaded.next(nationalDexMax);
         this.pokemonsListChanged.next(this.pokemons);
       }
     );
