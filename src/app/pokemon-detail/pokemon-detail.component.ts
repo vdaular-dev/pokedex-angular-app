@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../shared/pokemon.service';
 import { Pokemon } from '../shared/pokemon.model';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -356,11 +357,11 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   selectedGameVersion;
 
-  versions = {
-    'red-blue': 1, 'yellow': 2, 'gold-silver': 3, 'crystal': 4, 'ruby-sapphire': 5, 'emerald': 6,
-    'firered-leafgreen': 7, 'diamond-pearl': 8, 'platinum': 9, 'heartgold-soulsilver': 10, 'black-white': 11, 'colosseum': 12,
-    'xd': 13, 'black-2-white-2': 14, 'x-y': 15, 'omega-ruby-alpha-sapphire': 16, 'sun-moon': 17, 'ultra-sun-ultra-moon': 18, "lets-go-pikachu-lets-go-eevee": 19, "sword-shield": 20
-  };
+  versions = {"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
+              "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
+              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,
+              "sword-shield":20,"the-isle-of-armor":21,"the-crown-tundra":22,"brilliant-diamond-shining-pearl":23,"legends-arceus":24,"scarlet-violet":25,
+              "the-teal-mask":26,"the-indigo-disk":27,"red-green-japan":28,"blue-japan":29,"legends-za":30,"mega-dimension":31};
   generations = {
     'generation-i': 1,
     'generation-ii': 2,
@@ -369,11 +370,12 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'generation-v': 5,
     'generation-vi': 6,
     'generation-vii': 7,
-    'generation-viii': 8
+    'generation-viii': 8,
+    'generation-ix': 9
   }
   versionToGeneration = {
     'red-blue': 1, 'yellow': 1, 'gold-silver': 2, 'crystal': 2, 'ruby-sapphire': 3, 'emerald': 3,
-    'firered-leafgreen': 3, 'diamond-pearl': 4, 'platinum': 4, 'heartgold-soulsilver': 4, 'black-white': 5, 'black-2-white-2': 5, 'x-y': 6, 'omega-ruby-alpha-sapphire': 6, 'sun-moon': 7, 'ultra-sun-ultra-moon': 7, "lets-go-pikachu-lets-go-eevee": 7, "sword-shield": 8
+    'firered-leafgreen': 3, 'diamond-pearl': 4, 'platinum': 4, 'heartgold-soulsilver': 4, 'black-white': 5, 'black-2-white-2': 5, 'x-y': 6, 'omega-ruby-alpha-sapphire': 6, 'sun-moon': 7, 'ultra-sun-ultra-moon': 7, "lets-go-pikachu-lets-go-eevee": 7, "sword-shield": 8, "the-isle-of-armor": 8, "the-crown-tundra": 8, "brilliant-diamond-shining-pearl": 8, "legends-arceus": 8, "scarlet-violet": 9,
   }
 
   currentMoveData;
@@ -399,7 +401,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     if (this.pokemonService.versionMainSwitch) {
       this.selectedGameVersion = localStorage.getItem('SelectedVersion');
     } else {
-      this.selectedGameVersion = 'sword-shield';
+      this.selectedGameVersion = 'scarlet-violet';
       localStorage.setItem('SelectedVersion', this.selectedGameVersion);
     }
     // Initialization Logic after Pokemon Fetching in Both If and Else Conditions
@@ -491,9 +493,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
       this.evoChainsFetched = true;
     }
     if (this.pokemon.is_default) {
-      this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' +
-        this.pad(this.pokemon.id, 3) + '.png';
-      // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 3) + '.png';
+      this.pokemonImageUrl = environment.imagesURL +
+        this.pad(this.pokemon.id, 4) + '.png';
+      // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 4) + '.png';
     }
     // }
     this.getGenera();
@@ -781,9 +783,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         const re = '(' + this.pokemon.species['n'] + ')[-]([a-z]*)';
         const regExp = new RegExp(re, 'g');
         const str = this.pokemonForms[i].name.replace(regExp, '$2');
-        this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' +
-          this.pad(this.pokemon.id, 3) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
-        // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 3) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
+        this.pokemonImageUrl = environment.imagesURL +
+          this.pad(this.pokemon.id, 4) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
+        // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 4) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
       }
       // For Default Forms and Initializing Fields
       this.initializePokemonFields();
