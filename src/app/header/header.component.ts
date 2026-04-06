@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('saveSelectedVersion', 'true');
     }
     if(localStorage.getItem('SelectedVersion')==null){
-      localStorage.setItem('SelectedVersion', 'sword-shield');
+      localStorage.setItem('SelectedVersion', 'scarlet-violet');
     }
     this.megaSwitch = localStorage.getItem('megaEnabled') == 'true';
     this.versionSwitch = localStorage.getItem('saveSelectedVersion') == 'true';
