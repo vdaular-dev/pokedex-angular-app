@@ -36,8 +36,8 @@
               <div *ngIf="pokemon.abilities && pokemon.abilities.length > 0; else noAbilities">
                 <span class="abilities" *ngFor="let ability of pokemon.abilities; let i=index">
                 <ng-container *ngIf="i==2"><br></ng-container>
-                <span class="ability {{pokemon.color}} text-uppercase" [ngClass]="{'hiddenAbility':ability['isH']}" role="button" (click)="selectAbility(i)"
-                  style="white-space:nowrap;" [ngStyle]="{'display':i==2?'inline-block':'unset','margin-top':i==2?'5px':'0px'}" data-toggle="modal"
+                <span class="ability {{pokemon.color}} text-uppercase text-nowrap" [ngClass]="{'hiddenAbility':ability['isH']}" role="button" (click)="selectAbility(i)"
+                   [ngStyle]="{'display':i==2?'inline-block':'unset','margin-top':i==2?'5px':'0px'}" data-toggle="modal"
                   data-target="#abilityModal">{{ability['n']}}</span>
                 </span>
               </div>
@@ -69,7 +69,7 @@
     </div>
     <div class="col-lg-5">
       <div class="image-container">
-        <img alt="" class="Image img-fluid mx-auto my-auto d-block fadeInOut" [src]="pokemonImageUrl" (load)="imagePreload()"
+        <img alt="" class="Image fadeInOut" [src]="pokemonImageUrl" (load)="imagePreload()"
           [ngClass]="{fadeImg: !imageLoading,fOut :!imageVisible}">
         <img alt="" class="mega-sigil" src="assets/Mega-Evolution-Sigil.png" *ngIf="megaEvolving" [ngClass]="{'fIn': SigilVisible, 'sigil-end': sigilEnd}">
         <div class="megaSphere" *ngIf="megaEvolving" [ngClass]="{'fIn': SphereVisible}"></div>
@@ -94,7 +94,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">HP</td>
+            <td class="text-right font-weight-bold text-nowrap">HP</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -105,7 +105,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Attack</td>
+            <td class="text-right font-weight-bold text-nowrap">Attack</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -116,7 +116,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Defence</td>
+            <td class="text-right font-weight-bold text-nowrap">Defence</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -127,7 +127,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Sp. Attack</td>
+            <td class="text-right font-weight-bold text-nowrap">Sp. Attack</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -138,7 +138,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Sp. Defence</td>
+            <td class="text-right font-weight-bold">Sp. Defence</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -149,7 +149,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Speed</td>
+            <td class="text-right font-weight-bold text-nowrap">Speed</td>
             <td colspan="3">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated rounded-sm" role="progressbar" aria-valuenow="" aria-valuemin="0"
@@ -160,7 +160,7 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right font-weight-bold" style="white-space:nowrap;">Total</td>
+            <td class="text-right font-weight-bold text-nowrap">Total</td>
             <td colspan="3">
               {{totalBaseStats()}}
             </td>
