@@ -179,7 +179,7 @@
       <ng-container [ngSwitch]="exceptionalChainType">
         <ng-container *ngSwitchCase="''">
           <ng-container class="text-capitalize" *ngFor="let stage of evolutionChain; let i =index">
-            <div class="col-sm evo-div" style="padding: 10px;">
+            <div class="col-sm evo-div">
               <div *ngIf="evolutionChain.length===1" class="DNE">This Pokémon does not evolve.</div>
               <div>
                 <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(stage[1], 4) + '.png'}}"
@@ -205,7 +205,7 @@
           *ngSwitchCase="exceptionalChainType === '112' || exceptionalChainType === '12'|| exceptionalChainType === '13'? exceptionalChainType : 'null'">
           <ng-container class="text-capitalize" *ngFor="let stage of evolutionChain; let i =index">
             <ng-container *ngIf="i<evolutionChain.length-1; else MultiStage">
-              <div class="col-sm evo-div" style="padding: 10px;">
+              <div class="col-sm evo-div">
                 <div>
                   <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(stage[1], 4) + '.png'}}"
                     routerLink="/pokemon/{{stage[1]}}" (click)="selectEvolution(stage[1])">
@@ -242,7 +242,7 @@
             <ng-template #MultiStage>
               <div class="col-sm multi-evo-stage">
                 <ng-container *ngFor="let sideStage of stage;">
-                  <div class="col-sm evo-div" style="padding: 10px;">
+                  <div class="col-sm evo-div">
                     <div>
                       <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(sideStage[1], 4) + '.png'}}"
                         routerLink="/pokemon/{{sideStage[1]}}" (click)="selectEvolution(sideStage[1])">
@@ -266,7 +266,7 @@
         <ng-container *ngSwitchCase="'122'">
           <ng-container class="text-capitalize" *ngFor="let stage of evolutionChain; let i =index">
             <ng-container *ngIf="i<evolutionChain.length-2; else MultiStage">
-              <div class="col-sm evo-div" style="padding: 10px;">
+              <div class="col-sm evo-div">
                 <div>
                   <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(stage[1], 4) + '.png'}}"
                     routerLink="/pokemon/{{stage[1]}}" (click)="selectEvolution(stage[1])">
@@ -303,7 +303,7 @@
             <ng-template #MultiStage>
               <div class="col-sm multi-evo-stage">
                 <ng-container *ngFor="let sideStage of stage;">
-                  <div class="col-sm evo-div" style="padding: 10px;">
+                  <div class="col-sm evo-div">
                     <div>
                       <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(sideStage[1], 4) + '.png'}}"
                         routerLink="/pokemon/{{sideStage[1]}}" (click)="selectEvolution(sideStage[1])">
@@ -345,7 +345,7 @@
         <ng-container *ngSwitchCase="'18'">
           <div class="eeveeRow1">
             <ng-container class="text-capitalize" *ngFor="let row1 of evolutionChain[1].slice(0,3); let i =index">
-              <div class="col-sm evo-div" style="padding: 10px;">
+              <div class="col-sm evo-div">
                 <div>
                   <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(row1[1], 4) + '.png'}}"
                     routerLink="/pokemon/{{row1[1]}}" (click)="selectEvolution(row1[1])">
@@ -373,7 +373,7 @@
             </ng-container>
           </div>
           <div class="eeveeRow3">
-            <div class="col-sm evo-div text-capitalize" style="padding: 10px;">
+            <div class="col-sm evo-div">
               <div>
                 <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(evolutionChain[1][3][1], 4) + '.png'}}"
                   routerLink="/pokemon/{{evolutionChain[1][3][1]}}" (click)="selectEvolution(evolutionChain[1][3][1])">
@@ -394,7 +394,7 @@
                 {{evolutionDesc[0][3]}}
               </div>
             </div>
-            <div class="col-sm evo-div text-capitalize" style="padding: 10px;">
+            <div class="col-sm evo-div">
               <div>
                 <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(evolutionChain[0][1], 4) + '.png'}}"
                   routerLink="/pokemon/{{evolutionChain[0][1]}}" (click)="selectEvolution(evolutionChain[0][1])">
@@ -415,7 +415,7 @@
                 {{evolutionDesc[0][4]}}
               </div>
             </div>
-            <div class="col-sm evo-div text-capitalize" style="padding: 10px;">
+            <div class="col-sm evo-div">
               <div>
                 <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(evolutionChain[1][4][1], 4) + '.png'}}"
                   routerLink="/pokemon/{{evolutionChain[1][4][1]}}" (click)="selectEvolution(evolutionChain[1][4][1])">
@@ -443,7 +443,7 @@
           </div>
           <div class="eeveeRow1">
             <ng-container class="text-capitalize" *ngFor="let row1 of evolutionChain[1].slice(5,8); let i =index">
-              <div class="col-sm evo-div" style="padding: 10px;">
+              <div class="col-sm evo-div">
                 <div>
                   <img alt="" class="evo-img mx-auto d-block" src="assets/thumbnails-compressed/{{this.pad(row1[1], 4) + '.png'}}"
                     routerLink="/pokemon/{{row1[1]}}" (click)="selectEvolution(row1[1])">
