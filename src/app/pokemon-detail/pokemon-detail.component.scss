@@ -1,5 +1,8 @@
 .MainDiv {
   color: #505050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bioDiv {
@@ -9,16 +12,12 @@
 }
 
 .statDiv {
-
-
   .table>tr>td:first-child {
     color: #505050;
   }
-
   .table>tr:first-child>td>button {
     color: #505050;
   }
-
 }
 
 //Type Box
@@ -51,14 +50,6 @@
   transition: opacity .6s ease-in-out;
 }
 
-.Image {
-  z-index: 100;
-  max-width: 85%;
-  height: auto;
-  padding-top: 10px;
-  opacity: 1;
-  transition: opacity .6s ease-in-out;
-}
 
 // fOut at the Buttom
 
@@ -606,19 +597,19 @@
 
 .image-container {
   position: relative;
-  padding-bottom: calc(85% + 10px);
-  /* ratio of image height to width */
-  height: 0;
-  // overflow: hidden;
+  aspect-ratio: 1 / 1; /* Reserves a square space immediately */
+  width: 90%;
+  display: flex;
   margin: auto;
-  // display: contents; //to fix vertical align bug after fixing the species preload issue
 }
 
-.image-container img {
-  position: relative;
-  top: 0;
-  left: 0;
-  //height: auto;
+.image-container .Image {
+  max-width: 100%;
+  max-height: 100%; 
+  padding-top: 10px;
+  margin: auto;
+  object-fit: contain; /* Keeps Pokemon from stretching */
+  z-index: 1;
 }
 
 
@@ -855,9 +846,9 @@
     cursor: pointer;
   }
   span{
-  border-radius: 2px;
-  padding: 2px 3px;
-  white-space: nowrap;
+    border-radius: 2px;
+    padding: 2px 3px;
+    white-space: nowrap;
   } 
 }
 
@@ -1452,12 +1443,6 @@
   }
 
   .MovesTable {
-    padding-bottom: 3rem;
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
     max-width: 100%;
 
     .col {
