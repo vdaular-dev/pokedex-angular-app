@@ -849,16 +849,16 @@
 }
 
 .evo-name {
-  margin-bottom: 8px;
-
+  margin-bottom: 0.5rem;
+  line-height: normal;
   span:hover {
     cursor: pointer;
   }
-
+  span{
   border-radius: 2px;
   padding: 2px 3px;
   white-space: nowrap;
-  line-height: initial;
+  } 
 }
 
 .evo-id {
