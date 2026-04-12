@@ -67,7 +67,7 @@
         </table>
       </div>
     </div>
-    <div class="col-lg-5">
+    <div class="col-lg-5 d-flex">
       <div class="image-container">
         <img alt="" class="Image fadeInOut" [src]="pokemonImageUrl" (load)="imagePreload()"
           [ngClass]="{fadeImg: !imageLoading,fOut :!imageVisible}">
@@ -876,7 +876,9 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="moveDetails.length>0&&currentMoveData!==undefined&&currentMoveID!==null">
         <div class="modal-header-custom">
-          <h5 class="m-0 text-uppercase">{{movesList[currentMoveID][0]}}</h5>
+          <h5 class="pt-1 text-uppercase">{{movesList[currentMoveID][0]}}</h5>
+          <span class="{{pokemon.color}} rounded text-uppercase" style="padding: 4px 6px">
+            {{currentMoveData.generation}}</span>
         </div>
         <div class="modal-header-custom">
           <div class="d-flex flex-nowrap justify-content-center">
