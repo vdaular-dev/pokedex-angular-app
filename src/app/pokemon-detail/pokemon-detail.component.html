@@ -794,9 +794,11 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="allAbilitiesReceived && pokemon.abilities[abilitySelected] as ability">
         <div class="modal-header-custom">
-          <h5 class="pt-1 text-uppercase" [class.mb-0]="!ability['isH']">{{ability['n']}}</h5>
-          <span class="{{pokemon.color}} rounded" style="padding: 4px 6px"
-              *ngIf="ability['isH']">HIDDEN</span>
+          <h5 class="pt-1 text-uppercase">{{ability['n']}}</h5>
+          <span class="{{pokemon.color}} rounded text-uppercase" style="padding: 4px 6px"
+              >{{selectedAbilityGeneration}}</span>
+          <span class="{{pokemon.color}} rounded ml-2 hiddenAbility" style="padding: 4px 6px"
+              *ngIf="ability['isH']">HIDDEN</span>   
         </div>
         <div class="modal-body text-center">
           <p style="padding-top: 6px" *ngIf="unavailableAbilityText!=='';else availableAbility">

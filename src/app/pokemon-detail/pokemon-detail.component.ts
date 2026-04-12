@@ -34,6 +34,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
   abilities = [];
   abilitySelected = 0;
   allAbilitiesReceived = false;
+  selectedAbilityGeneration;
   selectedAbilityFlavorText;
   selectedAbilityEffect;
   selectedAbilityShortEffect;
@@ -629,6 +630,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   selectAbility(no: number) {
     this.abilitySelected = no;
+this.selectedAbilityGeneration = this.abilities[no]['generation'];
     this.unavailableAbilityText = '';
     if (['red-blue', 'yellow', 'gold-silver', 'crystal', 'lets-go-pikachu-lets-go-eevee'].indexOf(this.selectedGameVersion) !== -1) {
       this.unavailableAbilityText = 'Abilities unavailable in the selected games!';
