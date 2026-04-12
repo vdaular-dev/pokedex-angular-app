@@ -791,28 +791,23 @@
   </div>
   <!-- Ability Modal -->
   <div class="modal fade" id="abilityModal" tabindex="-1" role="dialog" aria-labelledby="abilityModal" aria-hidden="true" #abilityModal>
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" *ngIf="allAbilitiesReceived&&pokemon.abilities[abilitySelected]!=null">
-        <div class="">
-          <div class="text-center">
-            <div class="row" style="margin-top: 20px">
-              <h5 class="col-12 text-uppercase text-center">{{pokemon.abilities[abilitySelected]['n']}}</h5>
-            </div>
-            <span class="{{pokemon.color}} rounded justify-content-center" style="padding: 4px 6px"
-              *ngIf="pokemon.abilities[abilitySelected]!=undefined&&pokemon.abilities[abilitySelected]['isH']">HIDDEN</span>
-          </div>
-          <hr style="margin-top: 10px;margin-bottom: 5px">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+      <div class="modal-content" *ngIf="allAbilitiesReceived && pokemon.abilities[abilitySelected] as ability">
+        <div class="modal-header-custom">
+          <h5 class="pt-1 text-uppercase" [class.mb-0]="!ability['isH']">{{ability['n']}}</h5>
+          <span class="{{pokemon.color}} rounded" style="padding: 4px 6px"
+              *ngIf="ability['isH']">HIDDEN</span>
         </div>
-        <div class="modal-body justify-content-center text-center">
+        <div class="modal-body text-center">
           <p style="padding-top: 6px" *ngIf="unavailableAbilityText!=='';else availableAbility">
             {{unavailableAbilityText}}</p>
           <ng-template #availableAbility>
-            <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">GAME DESCRIPTION</span>
-            <p style="padding-top: 6px">{{selectedAbilityFlavorText}}</p>
-            <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">EFFECT</span>
-            <p style="padding-top: 6px">{{selectedAbilityShortEffect}}</p>
-            <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger;">IN-DEPTH EFFECT</span>
-            <p style="padding-top: 6px; white-space: pre-wrap;">{{selectedAbilityEffect}}</p>
+            <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">GAME DESCRIPTION</span>
+            <p class="pt-2">{{selectedAbilityFlavorText}}</p>
+            <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">EFFECT</span>
+            <p class="pt-2">{{selectedAbilityShortEffect}}</p>
+            <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">IN-DEPTH EFFECT</span>
+            <p class="pt-2" style="white-space: pre-wrap;">{{selectedAbilityEffect}}</p>
           </ng-template>
         </div>
         <div class="modal-footer justify-content-center">
@@ -823,23 +818,17 @@
   </div>
   <!--FlavorTextModal-->
   <div class="modal fade" id="descModal" tabindex="-1" role="dialog" aria-labelledby="descModal" aria-hidden="true" #descModal>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="pokemon.speciesDetails!==undefined">
-        <div class="">
-          <div class="text-center">
-            <div class="row" style="margin-top: 20px">
-              <h5 class="col-12 text-uppercase text-center">{{pokemon.name}}</h5>
-            </div>
-            <span class="{{pokemon.color}} rounded justify-content-center" style="padding: 4px 6px">Pokédex
-              Entries</span>
-          </div>
-          <hr style="margin-top: 10px;margin-bottom: 5px">
+        <div class="modal-header-custom">
+          <h5 class="pt-1 text-uppercase">{{pokemon.name}}</h5>
+          <span class="{{pokemon.color}} rounded" style="padding: 4px 6px">Pokédex Entries</span>
         </div>
-        <div class="modal-body justify-content-center text-center">
+        <div class="modal-body text-center">
           <ng-container *ngFor="let entry of pokemon.speciesDetails['FTE']">
-            <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">Pokémon {{entry['v'].replace('-', '
-              ')|titlecase}}</span>
-            <p style="padding-top: 6px">{{entry['e'].replace('', ' ')}}</p>
+            <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">
+              Pokémon {{entry['v'].replace('-', ' ')|titlecase}}</span>
+            <p class="pt-2">{{entry['e'].replace('', ' ')}}</p>
           </ng-container>
         </div>
         <div class="modal-footer justify-content-center">
@@ -850,20 +839,15 @@
   </div>
   <!--FormsDescModal-->
   <div class="modal fade" id="formsModal" tabindex="-1" role="dialog" aria-labelledby="formsModal" aria-hidden="true" #formsModal>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="pokemon.speciesDetails!==undefined">
-        <div class="">
-          <div class="text-center">
-            <div class="row" style="margin-top: 20px">
-              <h5 class="col-12 text-uppercase text-center">{{pokemonForms[0].name + "'s Forms"}}</h5>
-            </div>
-            <span class="{{pokemon.color}} rounded justify-content-center text-capitalize" style="padding: 4px 6px">
-              {{pokemon.speciesDetails['FoS'] ? 'Forms Switchable' : 'Forms Not Switchable'}}</span>
-          </div>
-          <hr style="margin-top: 10px;margin-bottom: 5px">
+        <div class="modal-header-custom">
+          <h5 class="pt-1 text-uppercase">{{pokemonForms[0].name + "'s Forms"}}</h5>
+          <span class="{{pokemon.color}} rounded text-capitalize" style="padding: 4px 6px">
+            {{pokemon.speciesDetails['FoS'] ? 'Forms Switchable' : 'Forms Not Switchable'}}</span>
         </div>
-        <div class="modal-body justify-content-center text-center">
-          <p style="padding-top: 6px">{{pokemon.speciesDetails['FD']}}</p>
+        <div class="modal-body text-center">
+          <p class="my-1">{{pokemon.speciesDetails['FD']}}</p>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -873,18 +857,13 @@
   </div>
   <!--GenderDifferencesModal-->
   <div class="modal fade" id="genderModal" tabindex="-1" role="dialog" aria-labelledby="genderModal" aria-hidden="true" #genderModal>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="pokemon.speciesDetails!==undefined">
-        <div>
-          <div class="text-center">
-            <div class="row" style="margin-top: 20px">
-              <h5 class="col-12 text-uppercase text-center">Gender Differences</h5>
-            </div>
-          </div>
-          <hr style="margin-top: 10px;margin-bottom: 5px">
+        <div class="modal-header-custom">
+          <h5 class="pt-1 text-uppercase">Gender Differences</h5>
         </div>
-        <div class="modal-body justify-content-center text-center">
-          <p style="padding-top: 6px">{{genderDifferences[pad(pokemon.id, 3)]}}.</p>
+        <div class="modal-body text-center">
+          <p class="my-1">{{genderDifferences[pad(pokemon.id, 3)]}}.</p>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -894,15 +873,13 @@
   </div>
   <!--MovesModal-->
   <div class="modal fade" id="moveModal" tabindex="-1" role="dialog" aria-labelledby="moveModal" aria-hidden="true" #moveModal>
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
       <div class="modal-content" *ngIf="moveDetails.length>0&&currentMoveData!==undefined&&currentMoveID!==null">
-        <div>
-          <div class="text-center">
-            <div class="row" style="margin-top: 20px">
-              <h5 class="col-12 text-uppercase text-center">{{movesList[currentMoveID][0]}}</h5>
-            </div>
-            <hr style="margin-top: 0;margin-bottom: 10px">
-            <div style="padding: 0;flex-wrap: nowrap;display: flex;justify-content: center">
+        <div class="modal-header-custom">
+          <h5 class="m-0 text-uppercase">{{movesList[currentMoveID][0]}}</h5>
+        </div>
+        <div class="modal-header-custom">
+          <div class="d-flex flex-nowrap justify-content-center">
               <div class="row icon {{types[movesList[currentMoveID][2].type_id-1]}} moveDetails">
                 <span class="col-8 text-white text-capitalize">{{types[movesList[currentMoveID][2].type_id-1]}}</span>
                 <span class="col-4"><img alt="" class="img-fluid" src="assets/type-icons/png/{{types[movesList[currentMoveID][2].type_id-1]}}.png">
@@ -922,10 +899,10 @@
                 </div>
               </ng-container>
             </div>
-          </div>
-          <hr style="margin-top: 10px;margin-bottom: 10px">
+        </div>
+        <div class="modal-header-custom">
           <div class="row text-center" style="margin-right: unset; margin-left: unset;">
-            <div class="col flex-column">
+            <div class="col">
               <div class="propertyValue {{pokemon.color+'-text'}}">{{movesList[currentMoveID][2].power}}</div>
               <div class="movePropertyName">Power</div>
             </div>
@@ -944,15 +921,14 @@
               <div class="movePropertyName">Priority</div>
             </div>
           </div>
-          <hr style="margin-top: 10px;margin-bottom: 5px">
         </div>
-        <div class="modal-body justify-content-center text-center">
-          <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">GAME DESCRIPTION</span>
-          <p style="padding-top: 6px">{{moveFlavorTextEntry}}</p>
-          <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">EFFECT</span>
-          <p style="padding-top: 6px;">{{moveShortEffect}}</p>
-          <span class="{{pokemon.color}} rounded text-center font-weight-bolder" style="padding: 4px; font-size: larger">IN-DEPTH EFFECT</span>
-          <p style="padding-top: 6px;white-space: pre-wrap">{{moveEffect}}</p>
+        <div class="modal-body text-center">
+          <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">GAME DESCRIPTION</span>
+          <p class="pt-2">{{moveFlavorTextEntry}}</p>
+          <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">EFFECT</span>
+          <p class="pt-2">{{moveShortEffect}}</p>
+          <span class="{{pokemon.color}} rounded text-center font-weight-bolder p-1" style="font-size: larger">IN-DEPTH EFFECT</span>
+          <p class="pt-2" style="white-space: pre-wrap">{{moveEffect}}</p>
         </div>
         <div class="modal-footer justify-content-center">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
