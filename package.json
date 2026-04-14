@@ -1,6 +1,6 @@
 {
   "name": "pokedex-angular-app",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "engines": {
     "node": "16.x"
   },
@@ -8,7 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev": "ng serve -o --host 0.0.0.0",
-    "http-server" : "http-server -c-1 dist/pokedex",
+    "http-server": "http-server -c-1 dist/pokedex",
     "build": "ng build --prod --serviceWorker true",
     "prod": "ng build --prod --baseHref /pokedex/ --serviceWorker true",
     "test": "ng test",
