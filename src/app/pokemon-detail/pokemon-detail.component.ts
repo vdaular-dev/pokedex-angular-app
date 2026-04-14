@@ -401,6 +401,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
   versionToGeneration = {
     'red-blue': 1, 'yellow': 1, 'gold-silver': 2, 'crystal': 2, 'ruby-sapphire': 3, 'emerald': 3,
     'firered-leafgreen': 3, 'diamond-pearl': 4, 'platinum': 4, 'heartgold-soulsilver': 4, 'black-white': 5, 'black-2-white-2': 5, 'x-y': 6, 'omega-ruby-alpha-sapphire': 6, 'sun-moon': 7, 'ultra-sun-ultra-moon': 7, "lets-go-pikachu-lets-go-eevee": 7, "sword-shield": 8, "the-isle-of-armor": 8, "the-crown-tundra": 8, "brilliant-diamond-shining-pearl": 8, "legends-arceus": 8, "scarlet-violet": 9,
+    "the-teal-mask":9,"the-indigo-disk":9,"legends-za":9,"mega-dimension":9
   }
 
   currentMoveData;
