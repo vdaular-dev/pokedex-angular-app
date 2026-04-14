@@ -108,7 +108,26 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'zoroark-hisui': 'white',
     'braviary-hisui': 'white',
     'calyrex-ice': 'white',
-    'calyrex-shadow': 'purple'
+    'calyrex-shadow': 'purple',
+    'tatsugiri-curly': 'red',
+    'tatsugiri-droopy': 'pink',
+    'tatsugiri-stretchy': 'yellow',
+    'wooper-paldea': 'brown',
+    'tauros-paldea-combat-breed': 'black',
+    'tauros-paldea-blaze-breed': 'black',
+    'tauros-paldea-aqua-breed': 'black',
+    'skarmory-mega': 'yellow',
+    'greninja-ash': 'black', // due to omitting battle bond form, greninja-ash corresponds to greninja-mega in pokemon.varieties
+    'floette-mega': 'black',
+    'drampa-mega': 'black',
+    'absol-mega-z': 'black',
+    'garchomp-mega-z': 'purple',
+    'heatran-mega': 'red',
+    'magearna-original-mega': 'white',
+    'zeraora-mega': 'black',
+    'tatsugiri-curly-mega': 'red',
+    'tatsugiri-droopy-mega': 'pink',
+    'tatsugiri-stretchy-mega': 'yellow',
   };
 
   formNameFormatted = {
