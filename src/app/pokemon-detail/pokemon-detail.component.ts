@@ -649,14 +649,20 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   selectAbility(no: number) {
     this.abilitySelected = no;
-this.selectedAbilityGeneration = this.abilities[no]['generation'];
+    this.selectedAbilityGeneration = this.abilities[no]['generation'];
     this.unavailableAbilityText = '';
     if (['red-blue', 'yellow', 'gold-silver', 'crystal', 'lets-go-pikachu-lets-go-eevee'].indexOf(this.selectedGameVersion) !== -1) {
       this.unavailableAbilityText = 'Abilities unavailable in the selected games!';
     } else if (!this.availableInSelectedGen(this.abilities[no]['generation'])) {
       this.unavailableAbilityText = 'This ability didn\'t exist in the selected games!';
     } else {
+      if(this.selectedGameVersion=='scarlet-violet'){ // current gen : fetch the latest
+        const entries = this.abilities[no]['flavor_text_entries'];
+        const latest = Object.keys(entries).sort((a, b) => +a - +b).pop();
+        this.selectedAbilityFlavorText = latest ? entries[latest] : "Unavailable";
+      } else{
       this.selectedAbilityFlavorText = this.abilities[no]['flavor_text_entries'][this.versions[this.selectedGameVersion]];
+      }
       if (this.abilities[no]['effect_entries'] == undefined) {
         this.selectedAbilityEffect = "Unavailable";
         this.selectedAbilityShortEffect = "Unavailable";
