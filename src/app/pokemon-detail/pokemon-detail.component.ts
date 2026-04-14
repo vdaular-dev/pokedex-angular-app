@@ -182,13 +182,18 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'snorunt',
     'clamperl',
     'burmy',
-    'applin',
-    'yamask'];//toxel,kubfu after form specific chains?
+    'yamask',
+    'sneasel',
+    'scyther',
+    'charcadet',
+    'wooper'
+  ];//toxel,kubfu after form specific chains?
   evolutionChainExceptions_122 = [
     'wurmple',
   ];
   evolutionChainExceptions_13 = [
-    'tyrogue'
+    'tyrogue',
+    'applin',
   ];
   evolutionChainExceptions_18 = [
     'eevee'];
@@ -1053,6 +1058,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   generateEvolutionMethodsLogic(stage) {
     let desc = '';
+    if(stage===undefined){
+      return desc;
+    }
     switch (stage['trigger']) {
       case 'level-up':
         if (stage['min_level'] !== null) {
@@ -1093,6 +1101,13 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
           const min_happiness = stage['min_happiness'];
           desc = desc + ' with ' + min_happiness + '+ Happiness';
         }
+        if (stage['min_steps'] !== null) {
+          const min_steps = stage['min_steps'];
+          desc = desc + ' with ' + min_steps + '+ Steps';
+        }
+        if (stage['needs_multiplayer'] !== false) {
+          desc = desc + ' in a Multiplayer session';
+        }
         if (stage['relative_physical_stats'] !== null) {
           let sign;
           if (stage['relative_physical_stats'] === 1) {
@@ -1120,8 +1135,22 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
           desc = desc + ' during Rain';
         }
         if (stage['time_of_day'] !== '') {
-          const time_of_day = this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
-          desc = desc + ' at ' + time_of_day + 'time';
+          let time_string = '';
+          switch (stage['time_of_day']) {
+            case 'night':
+              time_string = 'at Night';
+              break;
+            case 'day':
+              time_string = 'during the Day';
+              break;
+            case 'full-moon':
+              time_string = 'during a Full Moon';
+              break;
+            default:
+              time_string = 'during ' + this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
+              break;
+          }
+          desc += ' ' + time_string;
         }
         if (stage['turn_upside_down'] !== false) {
           desc = desc + ' holding 3DS upside-down';
@@ -1137,7 +1166,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         }
         if (stage['trade_species'] !== null) {
           const trade_species = this.capitalizeSplitJoin(stage['trade_species']['name'], '-', ' ');
-          desc = desc + ' with ' + trade_species;
+          desc = desc + ' for a ' + trade_species;
         }
         if (stage['gender'] !== null) {
           let gender;
@@ -1154,6 +1183,24 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         if (stage['item'] !== null) {
           const item = this.capitalizeSplitJoin(stage['item']['name'], '-', ' ');
           desc = desc + ' ' + item;
+        }
+        if (stage['time_of_day'] !== '') {
+          let time_string = '';
+          switch (stage['time_of_day']) {
+            case 'night':
+              time_string = 'at Night';
+              break;
+            case 'day':
+              time_string = 'during the Day';
+              break;
+            case 'full-moon':
+              time_string = 'during a Full Moon';
+              break;
+            default:
+              time_string = 'during ' + this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
+              break;
+          }
+          desc += ' ' + time_string;
         }
         if (stage['gender'] !== null) {
           let gender;
@@ -1182,6 +1229,30 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         break;
       case 'take-damage':
         desc = 'Travel under the stone bridge in Dusty Bowl after taking at least 49 HP in damage from attacks without fainting';
+        break;
+      case 'other': // Maushold only
+        desc = 'Level ' + stage['min_level'] + '+ in battle only';
+        break;
+      case 'agile-style-move':
+        let agile_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use Agile Style ' + agile_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'strong-style-move':
+        let strong_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use Strong Style ' + strong_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'use-move':
+        let used_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use ' + used_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'recoil-damage':
+        desc = 'Level up after taking ' + stage['min_damage_taken'] + 'HP+ recoil damage without fainting';
+        break;
+      case 'three-defeated-bisharp':
+        desc = 'Defeat three Bisharp holding Leader\'s Crest';
+        break;
+      case 'gimmmighoul-coins':
+        desc = 'Level up with 999 Gimmighoul Coins in the bag';
         break;
     }
     return desc;
