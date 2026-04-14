@@ -12,7 +12,7 @@
   
 </div>
 <p align="center">
-   A PWA (Progressive Web App) Built using Angular 9 with Service Workers.<br>
+   A PWA (Progressive Web App) Built using Angular 10 with Service Workers.<br>
    Works Offline and can be installed.<br>
    Built using the PokéAPI.
   
@@ -37,6 +37,13 @@
  
  
 # Versions
+**v3.0.0**
+ * Added Legends ZA Mega Evolutions
+ * Updated with Gen 9 data (1025 species)
+ * Improvements to Modals
+ * Various Performance Improvements
+ * Cleaned Code
+
 **v2.0.0**
  * Updated with Gen 8 data (905 species)
  * Option to enable saving of last selected game version.

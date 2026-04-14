@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PokemonService } from '../shared/pokemon.service';
 import { Pokemon } from '../shared/pokemon.model';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -33,6 +34,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
   abilities = [];
   abilitySelected = 0;
   allAbilitiesReceived = false;
+  selectedAbilityGeneration;
   selectedAbilityFlavorText;
   selectedAbilityEffect;
   selectedAbilityShortEffect;
@@ -106,7 +108,26 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'zoroark-hisui': 'white',
     'braviary-hisui': 'white',
     'calyrex-ice': 'white',
-    'calyrex-shadow': 'purple'
+    'calyrex-shadow': 'purple',
+    'tatsugiri-curly': 'red',
+    'tatsugiri-droopy': 'pink',
+    'tatsugiri-stretchy': 'yellow',
+    'wooper-paldea': 'brown',
+    'tauros-paldea-combat-breed': 'black',
+    'tauros-paldea-blaze-breed': 'black',
+    'tauros-paldea-aqua-breed': 'black',
+    'skarmory-mega': 'yellow',
+    'greninja-ash': 'black', // due to omitting battle bond form, greninja-ash corresponds to greninja-mega in pokemon.varieties
+    'floette-mega': 'black',
+    'drampa-mega': 'black',
+    'absol-mega-z': 'black',
+    'garchomp-mega-z': 'purple',
+    'heatran-mega': 'red',
+    'magearna-original-mega': 'white',
+    'zeraora-mega': 'black',
+    'tatsugiri-curly-mega': 'red',
+    'tatsugiri-droopy-mega': 'pink',
+    'tatsugiri-stretchy-mega': 'yellow',
   };
 
   formNameFormatted = {
@@ -161,13 +182,18 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'snorunt',
     'clamperl',
     'burmy',
-    'applin',
-    'yamask'];//toxel,kubfu after form specific chains?
+    'yamask',
+    'sneasel',
+    'scyther',
+    'charcadet',
+    'wooper'
+  ];//toxel,kubfu after form specific chains?
   evolutionChainExceptions_122 = [
     'wurmple',
   ];
   evolutionChainExceptions_13 = [
-    'tyrogue'
+    'tyrogue',
+    'applin',
   ];
   evolutionChainExceptions_18 = [
     'eevee'];
@@ -356,11 +382,11 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   selectedGameVersion;
 
-  versions = {
-    'red-blue': 1, 'yellow': 2, 'gold-silver': 3, 'crystal': 4, 'ruby-sapphire': 5, 'emerald': 6,
-    'firered-leafgreen': 7, 'diamond-pearl': 8, 'platinum': 9, 'heartgold-soulsilver': 10, 'black-white': 11, 'colosseum': 12,
-    'xd': 13, 'black-2-white-2': 14, 'x-y': 15, 'omega-ruby-alpha-sapphire': 16, 'sun-moon': 17, 'ultra-sun-ultra-moon': 18, "lets-go-pikachu-lets-go-eevee": 19, "sword-shield": 20
-  };
+  versions = {"red-blue":1,"yellow":2,"gold-silver":3,"crystal":4,"ruby-sapphire":5,"emerald":6,
+              "firered-leafgreen":7,"diamond-pearl":8,"platinum":9,"heartgold-soulsilver":10,"black-white":11,"colosseum":12,
+              "xd":13,"black-2-white-2":14,"x-y":15,"omega-ruby-alpha-sapphire":16,"sun-moon":17,"ultra-sun-ultra-moon":18,"lets-go-pikachu-lets-go-eevee": 19,
+              "sword-shield":20,"the-isle-of-armor":21,"the-crown-tundra":22,"brilliant-diamond-shining-pearl":23,"legends-arceus":24,"scarlet-violet":25,
+              "the-teal-mask":26,"the-indigo-disk":27,"red-green-japan":28,"blue-japan":29,"legends-za":30,"mega-dimension":31};
   generations = {
     'generation-i': 1,
     'generation-ii': 2,
@@ -369,11 +395,13 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     'generation-v': 5,
     'generation-vi': 6,
     'generation-vii': 7,
-    'generation-viii': 8
+    'generation-viii': 8,
+    'generation-ix': 9
   }
   versionToGeneration = {
     'red-blue': 1, 'yellow': 1, 'gold-silver': 2, 'crystal': 2, 'ruby-sapphire': 3, 'emerald': 3,
-    'firered-leafgreen': 3, 'diamond-pearl': 4, 'platinum': 4, 'heartgold-soulsilver': 4, 'black-white': 5, 'black-2-white-2': 5, 'x-y': 6, 'omega-ruby-alpha-sapphire': 6, 'sun-moon': 7, 'ultra-sun-ultra-moon': 7, "lets-go-pikachu-lets-go-eevee": 7, "sword-shield": 8
+    'firered-leafgreen': 3, 'diamond-pearl': 4, 'platinum': 4, 'heartgold-soulsilver': 4, 'black-white': 5, 'black-2-white-2': 5, 'x-y': 6, 'omega-ruby-alpha-sapphire': 6, 'sun-moon': 7, 'ultra-sun-ultra-moon': 7, "lets-go-pikachu-lets-go-eevee": 7, "sword-shield": 8, "the-isle-of-armor": 8, "the-crown-tundra": 8, "brilliant-diamond-shining-pearl": 8, "legends-arceus": 8, "scarlet-violet": 9,
+    "the-teal-mask":9,"the-indigo-disk":9,"legends-za":9,"mega-dimension":9
   }
 
   currentMoveData;
@@ -399,7 +427,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
     if (this.pokemonService.versionMainSwitch) {
       this.selectedGameVersion = localStorage.getItem('SelectedVersion');
     } else {
-      this.selectedGameVersion = 'sword-shield';
+      this.selectedGameVersion = 'scarlet-violet';
       localStorage.setItem('SelectedVersion', this.selectedGameVersion);
     }
     // Initialization Logic after Pokemon Fetching in Both If and Else Conditions
@@ -491,9 +519,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
       this.evoChainsFetched = true;
     }
     if (this.pokemon.is_default) {
-      this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' +
-        this.pad(this.pokemon.id, 3) + '.png';
-      // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 3) + '.png';
+      this.pokemonImageUrl = environment.imagesURL +
+        this.pad(this.pokemon.id, 4) + '.png';
+      // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 4) + '.png';
     }
     // }
     this.getGenera();
@@ -627,13 +655,20 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   selectAbility(no: number) {
     this.abilitySelected = no;
+    this.selectedAbilityGeneration = this.abilities[no]['generation'];
     this.unavailableAbilityText = '';
     if (['red-blue', 'yellow', 'gold-silver', 'crystal', 'lets-go-pikachu-lets-go-eevee'].indexOf(this.selectedGameVersion) !== -1) {
       this.unavailableAbilityText = 'Abilities unavailable in the selected games!';
     } else if (!this.availableInSelectedGen(this.abilities[no]['generation'])) {
       this.unavailableAbilityText = 'This ability didn\'t exist in the selected games!';
     } else {
+      if(this.selectedGameVersion=='scarlet-violet'){ // current gen : fetch the latest
+        const entries = this.abilities[no]['flavor_text_entries'];
+        const latest = Object.keys(entries).sort((a, b) => +a - +b).pop();
+        this.selectedAbilityFlavorText = latest ? entries[latest] : "Unavailable";
+      } else{
       this.selectedAbilityFlavorText = this.abilities[no]['flavor_text_entries'][this.versions[this.selectedGameVersion]];
+      }
       if (this.abilities[no]['effect_entries'] == undefined) {
         this.selectedAbilityEffect = "Unavailable";
         this.selectedAbilityShortEffect = "Unavailable";
@@ -781,9 +816,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         const re = '(' + this.pokemon.species['n'] + ')[-]([a-z]*)';
         const regExp = new RegExp(re, 'g');
         const str = this.pokemonForms[i].name.replace(regExp, '$2');
-        this.pokemonImageUrl = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/' +
-          this.pad(this.pokemon.id, 3) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
-        // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 3) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
+        this.pokemonImageUrl = environment.imagesURL +
+          this.pad(this.pokemon.id, 4) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
+        // this.pokemonImageUrl = 'assets/images/' + this.pad(this.pokemon.id, 4) + '-' + this.capitalizeSplitJoin(str, '-', '-') + '.png';
       }
       // For Default Forms and Initializing Fields
       this.initializePokemonFields();
@@ -1024,6 +1059,9 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   generateEvolutionMethodsLogic(stage) {
     let desc = '';
+    if(stage===undefined){
+      return desc;
+    }
     switch (stage['trigger']) {
       case 'level-up':
         if (stage['min_level'] !== null) {
@@ -1064,6 +1102,13 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
           const min_happiness = stage['min_happiness'];
           desc = desc + ' with ' + min_happiness + '+ Happiness';
         }
+        if (stage['min_steps'] !== null) {
+          const min_steps = stage['min_steps'];
+          desc = desc + ' with ' + min_steps + '+ Steps';
+        }
+        if (stage['needs_multiplayer'] !== false) {
+          desc = desc + ' in a Multiplayer session';
+        }
         if (stage['relative_physical_stats'] !== null) {
           let sign;
           if (stage['relative_physical_stats'] === 1) {
@@ -1091,8 +1136,22 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
           desc = desc + ' during Rain';
         }
         if (stage['time_of_day'] !== '') {
-          const time_of_day = this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
-          desc = desc + ' at ' + time_of_day + 'time';
+          let time_string = '';
+          switch (stage['time_of_day']) {
+            case 'night':
+              time_string = 'at Night';
+              break;
+            case 'day':
+              time_string = 'during the Day';
+              break;
+            case 'full-moon':
+              time_string = 'during a Full Moon';
+              break;
+            default:
+              time_string = 'during ' + this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
+              break;
+          }
+          desc += ' ' + time_string;
         }
         if (stage['turn_upside_down'] !== false) {
           desc = desc + ' holding 3DS upside-down';
@@ -1108,7 +1167,7 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         }
         if (stage['trade_species'] !== null) {
           const trade_species = this.capitalizeSplitJoin(stage['trade_species']['name'], '-', ' ');
-          desc = desc + ' with ' + trade_species;
+          desc = desc + ' for a ' + trade_species;
         }
         if (stage['gender'] !== null) {
           let gender;
@@ -1125,6 +1184,24 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         if (stage['item'] !== null) {
           const item = this.capitalizeSplitJoin(stage['item']['name'], '-', ' ');
           desc = desc + ' ' + item;
+        }
+        if (stage['time_of_day'] !== '') {
+          let time_string = '';
+          switch (stage['time_of_day']) {
+            case 'night':
+              time_string = 'at Night';
+              break;
+            case 'day':
+              time_string = 'during the Day';
+              break;
+            case 'full-moon':
+              time_string = 'during a Full Moon';
+              break;
+            default:
+              time_string = 'during ' + this.capitalizeSplitJoin(stage['time_of_day'], '-', ' ');
+              break;
+          }
+          desc += ' ' + time_string;
         }
         if (stage['gender'] !== null) {
           let gender;
@@ -1153,6 +1230,30 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
         break;
       case 'take-damage':
         desc = 'Travel under the stone bridge in Dusty Bowl after taking at least 49 HP in damage from attacks without fainting';
+        break;
+      case 'other': // Maushold only
+        desc = 'Level ' + stage['min_level'] + '+ in battle only';
+        break;
+      case 'agile-style-move':
+        let agile_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use Agile Style ' + agile_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'strong-style-move':
+        let strong_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use Strong Style ' + strong_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'use-move':
+        let used_move = this.capitalizeSplitJoin(stage['used_move']['name'], '-', ' ');
+        desc = 'Use ' + used_move + ' ' + stage['min_move_count'] + '+ times';
+        break;
+      case 'recoil-damage':
+        desc = 'Level up after taking ' + stage['min_damage_taken'] + 'HP+ recoil damage without fainting';
+        break;
+      case 'three-defeated-bisharp':
+        desc = 'Defeat three Bisharp holding Leader\'s Crest';
+        break;
+      case 'gimmmighoul-coins':
+        desc = 'Level up with 999 Gimmighoul Coins in the bag';
         break;
     }
     return desc;

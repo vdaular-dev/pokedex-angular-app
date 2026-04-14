@@ -73,7 +73,32 @@ export class PokemonService {
     877: 'Morpeko',
     892: 'Urshifu',
     902: 'Basculegion',
-    905: 'Enamorus'
+    905: 'Enamorus',
+    916: 'Oinkologne',
+    925: 'Maushold',
+    931: 'Squawkabilly',
+    964: 'Palafin',
+    978: 'Tatsugiri',
+    984: 'Great Tusk',
+    985: 'Scream Tail',
+    986: 'Brute Bonnet',
+    987: 'Flutter Mane',
+    988: 'Slither Wing',
+    989: 'Sandy Shocks',
+    990: 'Iron Treads',
+    991: 'Iron Bundle',
+    992: 'Iron Hands',
+    993: 'Iron Jugulis',
+    994: 'Iron Moth',
+    995: 'Iron Thorns',
+    1005: 'Roaring Moon',
+    1006: 'Iron Valiant',
+    1009: 'Walking Wake',
+    1010: 'Iron Leaves',
+    1020: 'Gouging Fire',
+    1021: 'Raging Bolt',
+    1022: 'Iron Boulder',
+    1023: 'Iron Crown',
   }
   @Output() searchItemSubject: Subject<string> = new Subject<string>();
   @Output() EverythingLoaded: Subject<boolean> = new Subject<boolean>();
@@ -166,7 +191,8 @@ export class PokemonService {
       (response) => {
         this.getMoveDetailsFromCSV();
         this.pokemonJSON = response['pokemon'];
-        for (let i = 0; i < 905; i++) {
+        let nationalDexMax = 1025;
+        for (let i = 0; i < nationalDexMax; i++) {
           const pokemonData = this.pokemonJSON[(i + 1).toString()];
           const pokemonSpeciesData = this.pokemonSpeciesJSON[i];
           let name = pokemonData['N'];
@@ -200,7 +226,7 @@ export class PokemonService {
             pokemonSpeciesData['EvC']
           ));
         }
-        this.newPokemonsLoaded.next(905);
+        this.newPokemonsLoaded.next(nationalDexMax);
         this.pokemonsListChanged.next(this.pokemons);
       }
     );

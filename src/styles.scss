@@ -63,6 +63,18 @@ body {
   will-change: transform;
 }
 
+.modal-header-custom{
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-content {
+  -webkit-box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.13);
+  box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.13);
+}
+
 .modal-backdrop {
   display: none;
   // z-index: 995;
